@@ -7,5 +7,10 @@ CREATE TABLE animals (
     escape_attempts INT,
     neutered BOOLEAN,
     weight_kg DECIMAL,
-    species TEXT,
 );
+
+--query to add species column to table
+
+ALTER TABLE animals ADD COLUMN species TEXT;
+
+
