@@ -23,3 +23,40 @@ INSERT INTO animals (name, date_of_birth, escape_attempts, neutered, weight_kg) 
 INSERT INTO animals (name, date_of_birth, escape_attempts, neutered, weight_kg) VALUES ('Boarmon', '2005-06-07', 7, true, 20.4);
 INSERT INTO animals (name, date_of_birth, escape_attempts, neutered, weight_kg) VALUES ('Blossom', '1998-10-13', 3, true, 17);
 INSERT INTO animals (name, date_of_birth, escape_attempts, neutered, weight_kg) VALUES ('Ditto', '2022-05-14', 4, true, 22);
+
+-- Insert the following data into the owners table:
+-- Sam Smith 34 years old.
+-- Jennifer Orwell 19 years old.
+-- Bob 45 years old.
+-- Melody Pond 77 years old.
+-- Dean Winchester 14 years old.
+-- Jodie Whittaker 38 years old.
+
+insert into owners (full_name, age) values ('Sam Smith', 34), ('Jennifer Orwell', 19), ('Bob', 45), ('Melody Pond', 77), ('Dean Winchester', 14), ('Jodie Whittaker', 38);
+
+-- Insert the following data into the species table:
+-- Pokemon
+-- Digimon
+insert into species (name) values ('Pokemon'), ('Digimon');
+
+-- Update animals table:
+
+-- Modify your inserted animals so it includes the species_id value:
+-- If the name ends in "mon" it will be Digimon
+-- All other animals are Pokemon
+update animals set species_id = 2 where name like '%mon';
+update animals set species_id = 1 where species_id is null;
+
+-- Modify your inserted animals to include owner information (owner_id):
+-- Sam Smith owns Agumon.
+-- Jennifer Orwell owns Gabumon and Pikachu.
+-- Bob owns Devimon and Plantmon.
+-- Melody Pond owns Charmander, Squirtle, and Blossom.
+-- Dean Winchester owns Angemon and Boarmon.
+-- Update animals table:
+
+update animals set owner_id = 1 where name = 'Agumon';
+update animals set owner_id = 2 where name = 'Gabumon' or name = 'Pikachu';
+update animals set owner_id = 3 where name = 'Devimon' or name = 'Plantmon';
+update animals set owner_id = 4 where name = 'Charmander' or name = 'Squirtle' or name = 'Blossom';
+update animals set owner_id = 5 where name = 'Angemon' or name = 'Boarmon';
