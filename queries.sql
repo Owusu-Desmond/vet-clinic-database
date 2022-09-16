@@ -138,3 +138,35 @@ select * from animals A join owners O on A.owner_id = O.id where O.full_name = '
 
 -- Who owns the most animals?
 select O.full_name, count(*) as count from animals A join owners O on A.owner_id = O.id group by O.full_name order by count desc limit 1;
+
+-- 8 more queries for the following quests:
+
+-- Who was the last animal seen by William Tatcher?
+select * from animals where id = (select animal_id from visits where vet_id = 1 order by visit_date desc limit 1)
+
+-- How many different animals did Stephanie Mendez see?
+
+select count(distinct animal_id) from visits where vet_id = 3
+
+-- List all vets and their specialties, including vets with no specialties.
+
+select v.name, s.species_id from vets v left join specializations s on v.id = s.vet_id
+
+-- List all animals that visited Stephanie Mendez between April 1st and August 30th, 2020.
+
+select a.name from animals a join visits v on a.id = v.animal_id where v.vet_id = 3 and v.visit_date between '2020-04-01' and '2020-08-30'
+
+-- What animal has the most visits to vets?
+select a.name, count(v.animal_id) from animals a join visits v on a.id = v.animal_id group by a.name order by count(v.animal_id) desc limit 1
+
+-- Who was Maisy Smith's first visit?
+select a.name from animals a join visits v on a.id = v.animal_id where v.vet_id = 2 order by v.visit_date asc limit 1
+
+-- Details for most recent visit: animal information, vet information, and date of visit.
+select a.name, v.visit_date, v.vet_id from animals a join visits v on a.id = v.animal_id order by v.visit_date desc limit 1
+
+-- How many visits were with a vet that did not specialize in that animal's species?
+select count(*) from visits v join specializations s on v.vet_id = s.vet_id where v.animal_id = s.species_id
+
+-- What specialty should Maisy Smith consider getting? Look for the species she gets the most.
+select s.species_id from specializations s join visits v on s.vet_id = v.vet_id where v.vet_id = 2 group by s.species_id order by count(s.species_id) desc limit 1
