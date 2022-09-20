@@ -2,6 +2,10 @@
 
 Vet clinic database is a database schema for a veterinary clinic. It is built using PostgreSQL.
 
+## Database schema diagram
+
+![Database schema diagram](./vet-clinic-database-schema.png)
+
 ## Getting Started
 
 This repository includes files with plain SQL that can be used to recreate a database:
