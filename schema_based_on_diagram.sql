@@ -73,3 +73,31 @@ CREATE TABLE treatments(
 ALTER TABLE
     treatments ADD PRIMARY KEY(id);
 
+-- create relationship between medical history and patient
+ALTER TABLE
+    medical_histories ADD CONSTRAINT medical_histories_patient_id_foreign FOREIGN KEY(patient_id) REFERENCES patients(id);
+
+-- create relationship between invoice_items and treatment
+ALTER TABLE
+    invoices_items ADD CONSTRAINT invoices_items_treatment_id_foreign FOREIGN KEY(treatment_id) REFERENCES treatments(id);
+
+-- create relationship between invoice_items and invoice
+ALTER TABLE
+    invoices_items ADD CONSTRAINT invoices_items_invoice_id_foreign FOREIGN KEY(invoice_id) REFERENCES invioces(id);
+
+-- create relationship between invoice and medical history
+ALTER TABLE
+    invioces ADD CONSTRAINT invioces_medical_histroy_id_foreign FOREIGN KEY(medical_histroy_id) REFERENCES medical_histories(id);
+
+-- add the FK indexes
+CREATE INDEX
+    invoices_items_invoice_id_index ON invoices_items(invoice_id);
+
+CREATE INDEX
+    invoices_items_treatment_id_index ON invoices_items(treatment_id);
+
+CREATE INDEX
+    invioces_medical_histroy_id_index ON invioces(medical_histroy_id);
+
+CREATE INDEX
+    medical_histories_patient_id_index ON medical_histories(patient_id);
