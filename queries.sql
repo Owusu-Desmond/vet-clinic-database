@@ -170,3 +170,12 @@ select count(*) from visits v join specializations s on v.vet_id = s.vet_id wher
 
 -- What specialty should Maisy Smith consider getting? Look for the species she gets the most.
 select s.species_id from specializations s join visits v on s.vet_id = v.vet_id where v.vet_id = 2 group by s.species_id order by count(s.species_id) desc limit 1
+
+-- explain analyze queries.
+
+explain analyze select count(*) from visits where animal_id = 4;
+
+explain analyze select * from visits where vet_id = 2;
+
+explain analyze select * from owners where email = 'owner_18327@mail.com';
+
