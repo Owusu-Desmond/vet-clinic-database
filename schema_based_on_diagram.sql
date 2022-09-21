@@ -89,6 +89,13 @@ ALTER TABLE
 ALTER TABLE
     invioces ADD CONSTRAINT invioces_medical_histroy_id_foreign FOREIGN KEY(medical_histroy_id) REFERENCES medical_histories(id);
 
+-- Join many-to-many relationship
+CREATE TABLE medical_histories_treatement (
+    medical_histroy_id int,
+    treatment_id int,
+    PRIMARY KEY (medical_histroy_id, treatment_id),
+)
+
 -- add the FK indexes
 CREATE INDEX
     invoices_items_invoice_id_index ON invoices_items(invoice_id);
