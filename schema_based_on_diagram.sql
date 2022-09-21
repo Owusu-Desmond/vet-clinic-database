@@ -101,3 +101,10 @@ CREATE INDEX
 
 CREATE INDEX
     medical_histories_patient_id_index ON medical_histories(patient_id);
+
+CREATE TABLE medical_treatment(
+    medical_history_id INT REFERENCES medical_histories (id),
+    treatment_id INT REFERENCES treatments (id),
+    CONSTRAINT pkey
+    PRIMARY KEY(medical_history_id, treatment_id)
+);
