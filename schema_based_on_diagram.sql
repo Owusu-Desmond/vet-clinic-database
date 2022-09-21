@@ -96,6 +96,15 @@ CREATE TABLE medical_histories_treatement (
     PRIMARY KEY (medical_histroy_id, treatment_id),
 )
 
+--  Add foreign keys to join table
+ALTER TABLE
+    medical_histories_treatement
+ADD FOREIGN KEY (medical_history_id) REFERENCES medical_histories(id);
+
+ALTER TABLE
+    medical_histories_treatement
+ADD FOREIGN KEY (treatment_id) REFERENCES treatments(id);
+
 -- add the FK indexes
 CREATE INDEX
     invoices_items_invoice_id_index ON invoices_items(invoice_id);
